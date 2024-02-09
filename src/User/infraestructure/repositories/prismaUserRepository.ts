@@ -48,4 +48,8 @@ export class PrismaUserRepository implements IUserRepository {
             user!.id!,
         );
     }
+
+    async disconnect(): Promise<void> {
+        await this.prisma.$disconnect();
+    }
 }
