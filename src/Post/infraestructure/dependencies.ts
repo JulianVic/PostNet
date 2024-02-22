@@ -1,3 +1,4 @@
+import { NotificationNewProductUseCase } from "../application/NotificationNewProductUseCase";
 import { CreatePostUseCase } from "../application/createPostUseCase";
 import { ReadAllPostsUseCase } from "../application/readAllPostsUseCase";
 import { ReadPostByIdUseCase } from "../application/readPostByIdUseCase";
@@ -7,10 +8,13 @@ import { readAllPostsController } from "./controller/readAllPostsController";
 import { readPostByIdController } from "./controller/readPostByIdController";
 
 import { PrismaPostRepository } from "./repositories/prismaPostRepository";
+import { RabbitMQService } from "./services/RabbitMQService";
 
 export const prismaPostRepository = new PrismaPostRepository();
+export const servicesNotification = new RabbitMQService
 
-export const createPostUseCase = new CreatePostUseCase(prismaPostRepository);
+export const serviceNotificationUseCase = new NotificationNewProductUseCase(servicesNotification)
+export const createPostUseCase = new CreatePostUseCase(prismaPostRepository, serviceNotificationUseCase);
 export const readAllPostsUseCase = new ReadAllPostsUseCase(prismaPostRepository);
 export const readPostByIdUseCase = new ReadPostByIdUseCase(prismaPostRepository);
 
