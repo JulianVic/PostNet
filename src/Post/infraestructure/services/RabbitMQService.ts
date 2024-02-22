@@ -6,7 +6,7 @@ export class RabbitMQService implements INotificationNewPost {
     async sendNotification(post: Post): Promise<boolean> {
         const options = {
             username: "julianvic",
-            password: "Aa9612961210#-#", 
+            password: "jejejesisisi", 
         }
         let exchange = "upchiapas.int"
         let queue = "initial"
