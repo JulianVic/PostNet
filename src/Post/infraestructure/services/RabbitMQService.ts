@@ -4,15 +4,13 @@ import { Post } from "../../domain/entities/Post";
 
 export class RabbitMQService implements INotificationNewPost {
     async sendNotification(post: Post): Promise<boolean> {
-        const options = {
-            username: "julianvic",
-            password: "jejejesisisi", 
-        }
-        let exchange = "upchiapas.int"
-        let queue = "initial"
-        const conn = await amqp.connect("amqp://3.218.42.222");
+        let exchange : string = process.env.AMQP_EXCHANGE!;
+        let queue : string = process.env.AMQP_QUEUE!;
+        let url : string = process.env.AMQP_URL!;
+        let typeExchange : string = process.env.AMQP_TYPE_EXCHANGE!;
+        const conn = await amqp.connect(url);
         const ch = await conn.createChannel();
-        ch.assertExchange(exchange, "direct", {
+        ch.assertExchange(exchange, typeExchange, {
             durable: true
         });
         ch.assertQueue(queue, {
