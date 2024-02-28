@@ -61,4 +61,8 @@ export class PrismaPostRepository implements IPostRepository {
     });
   }
 
+  async deleteAll(): Promise<void> {
+    await this.prisma.post.deleteMany();
+  }
+
 }

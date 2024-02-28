@@ -5,4 +5,5 @@ export interface IPostRepository {
     readAll(): Promise<Post[]>
     readById(id: number): Promise<Post>
     deleteById(id: number): Promise<void>
+    deleteAll(): Promise<void>
 }

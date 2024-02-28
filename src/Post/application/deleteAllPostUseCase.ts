@@ -1,9 +1,9 @@
 import { IPostRepository } from "../domain/repositories/IPostRepository";
 
-export class DeleteByIdPostUseCase {
+export class DeleteAllPostUseCase {
     constructor(private readonly repository: IPostRepository) { }
 
-    async run(id: number): Promise<void> {
-        return await this.repository.deleteById(id);
+    async run(): Promise<void> {
+        return await this.repository.deleteAll();
     }
 }
